@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>饗樂音樂工作室 | 師資介紹・教學分享・接案演出</title>
+    <!-- 引入 Google Fonts 與 FontAwesome 圖示 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* 莫蘭迪色系變數設定 */
+        :root {
+            --morandi-bg: #F4F3F0;          /* 燕麥灰白基底 */
+            --morandi-card: #FFFFFF;        /* 卡片白 */
+            --morandi-primary: #8E9AAF;     /* 霧灰藍 */
+            --morandi-secondary: #B8B5FF;   /* 柔和紫灰 */
+            --morandi-accent: #D4A5A5;      /* 溫潤霧粉 */
+            --morandi-dark: #4A4E69;        /* 深灰紫文字 */
+            --morandi-muted: #7E7F83;       /* 次要文字灰 */
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Serif TC', serif;
+            background-color: var(--morandi-bg);
+            color: var(--morandi-dark);
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        /* 導覽列 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(244, 243, 240, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--morandi-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--morandi-muted);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--morandi-dark);
+        }
+
+        /* Hero 首頁主視覺 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            background: linear-gradient(135deg, rgba(142,154,175,0.1), rgba(212,165,165,0.1));
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--morandi-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--morandi-primary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(142, 154, 175, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--morandi-dark);
+            transform: translateY(-2px);
+        }
+
+        /* 區塊通用樣式 */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--morandi-accent);
+            margin: 0.5rem auto 0;
+        }
+
+        /* 師資介紹卡片 */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .teacher-card {
+            background: var(--morandi-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+        }
+
+        .teacher-img {
+            height: 250px;
+            background-color: #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--morandi-muted);
+            font-size: 3rem;
+        }
+
+        .teacher-info {
+            padding: 2rem;
+        }
+
+        .teacher-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .teacher-info .title {
+            color: var(--morandi-primary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .teacher-info p {
+            color: var(--morandi-muted);
+            font-size: 0.95rem;
+        }
+
+        /* 教學分享與心得 */
+        .sharing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .sharing-card {
+            background: var(--morandi-card);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        .sharing-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .sharing-card p {
+            color: var(--morandi-muted);
+            font-size: 0.95rem;
+        }
+
+        /* 接案演出 */
+        .booking-content {
+            background: var(--morandi-card);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .booking-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .booking-text p {
+            color: var(--morandi-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .ensemble-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background-color: rgba(142, 154, 175, 0.15);
+            color: var(--morandi-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* 聯絡我們 */
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(212,165,165,0.1), rgba(142,154,175,0.1));
+            border-radius: var(--border-radius);
+            margin: 2rem auto;
+            max-width: 1100px;
+            padding: 4rem 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            color: var(--morandi-muted);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 頁尾 */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--morandi-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* RWD 響應式調整 */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .booking-content { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fa-solid fa-music"></i> 饗樂音樂工作室</a>
+            <ul class="nav-links">
+                <li><a href="#teachers">師資介紹</a></li>
+                <li><a href="#sharing">教學分享</a></li>
+                <li><a href="#booking">接案演出</a></li>
+                <li><a href="#contact">聯絡我們</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 首頁主視覺 -->
+    <section class="hero">
+        <h1>讓音樂，流淌於日常的優雅</h1>
+        <p>專業小提琴與室內樂教學、精緻質感音樂會演出，為您打造溫暖純粹的藝術空間。</p>
+        <a href="#contact" class="btn">預約諮詢 / 演出洽談</a>
+    </section>
+
+    <!-- 師資介紹 -->
+    <section id="teachers">
+        <h2 class="section-title">師資介紹</h2>
+        <div class="teachers-grid">
+            <div class="teacher-card">
+                <div class="teacher-img">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="teacher-info">
+                    <h3>Mimi 老師</h3>
+                    <span class="title">音樂總監 / 小提琴主修</span>
+                    <p>多年豐富教學與室內樂演出經驗。致力於引導學生建立紮實基礎，並在音樂中找尋專屬的共鳴與感動。</p>
+                </div>
+            </div>
+            <!-- 可以依需求再增加老師卡片 -->
+            <div class="teacher-card">
+                <div class="teacher-img">
+                    <i class="fa-solid fa-user-music"></i>
+                </div>
+                <div class="teacher-info">
+                    <h3>客席專業師資</h3>
+                    <span class="title">弦樂/室內樂協力</span>
+                    <p>畢業於國內外知名音樂學院，擁有豐富舞台經歷與細膩的教學熱忱，陪伴學員一同探索古典與多元曲風。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教學分享 -->
+    <section id="sharing" style="background-color: rgba(255,255,255,0.5);">
+        <h2 class="section-title">教學分享與心得</h2>
+        <div class="sharing-grid">
+            <div class="sharing-card">
+                <h3>🎻 練琴小技巧：如何克服慢練的枯燥？</h3>
+                <p>慢練是通往精湛技巧的唯一捷徑。透過分解動作與節拍器的巧妙運用，讓手指與大腦建立精準的記憶連結...</p>
+            </div>
+            <div class="sharing-card">
+                <h3>✨ 學員成果：微光初綻音樂會圓滿落幕</h3>
+                <p>看著學生們在舞台上自信地拉出優美樂音，克服怯場、綻放光芒，這就是教學路上最動人的風景。</p>
+            </div>
+            <div class="sharing-card">
+                <h3>🎼 經典曲目賞析：探究卡薩達曲中的浪漫</h3>
+                <p>從《查爾達斯舞曲》的熱情奔放到抒情樂段的細緻揉弦，如何用琴音說一個動人的故事？</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 接案演出 -->
+    <section id="booking">
+        <h2 class="section-title">接案演出服務</h2>
+        <div class="booking-content">
+            <div class="booking-text">
+                <h3>為您的重要時刻，添上一抹優雅琴韻</h3>
+                <p>我們提供專業的室內樂、弦樂團編制演出，適用於婚禮宴會、品牌活動、藝文展演及私人聚會。依您的活動氛圍量身訂製曲目風格。</p>
+                <div class="ensemble-tags">
+                    <span class="tag">小提琴獨奏</span>
+                    <span class="tag">弦樂二重奏/四重奏</span>
+                    <span class="tag">饗樂室內樂團協演</span>
+                </div>
+                <a href="#contact" class="btn">洽詢演出檔期</a>
+            </div>
+            <div style="text-align: center; color: var(--morandi-primary); font-size: 6rem;">
+                <i class="fa-solid fa-violin"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡我們 -->
+    <section id="contact">
+        <div class="contact-section">
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">聯絡我們</h2>
+            <p style="color: var(--morandi-muted); max-width: 600px; margin: 0 auto;">工作室位於新北市新莊區。無論是課程詢問、體驗預約，或是活動演出邀約，歡迎隨時與我們聯繫！</p>
+            <div class="contact-info">
+                <div class="contact-item"><i class="fa-solid fa-location-dot"></i> 新北市新莊區</div>
+                <div class="contact-item"><i class="fa-solid fa-envelope"></i> contact@example.com</div>
+                <div class="contact-item"><i class="fa-brands fa-line"></i> Line ID: @music_studio</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 饗樂音樂工作室 All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
